@@ -5,10 +5,12 @@ import 'package:app_watchers_assessment/core/constants/app_strings.dart';
 import 'package:app_watchers_assessment/core/constants/app_textstyles.dart';
 import 'package:app_watchers_assessment/features/bottom_nav/state/bottom_nav_notifier.dart';
 import 'package:app_watchers_assessment/features/bottom_nav/widgets/app_header.dart';
+import 'package:app_watchers_assessment/features/cart/state/cart_notifier.dart';
 import 'package:app_watchers_assessment/utils/extensions/widget_extensions.dart';
 import 'package:app_watchers_assessment/widgets/page_widgets/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNav extends ConsumerStatefulWidget {
@@ -75,27 +77,32 @@ class _BottomNavState extends ConsumerState<BottomNav> {
             label: AppStrings.home,
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              margin:  EdgeInsets.only(
-                bottom: ref.watch(bottomNavNotifier).currentIndex == 0 ?  5.ah : 8.ah,
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.aw, vertical: ref.watch(bottomNavNotifier).currentIndex == 1 ?  5.ah : 8.ah,
-              ),
-              decoration: BoxDecoration(
-                color: ref.watch(bottomNavNotifier).currentIndex == 1
-                    ? AppColors.primaryBlue
-                    : AppColors.neutralWhite,
-                  borderRadius: BorderRadius.circular(32.ar)
-              ),
-              child: Image.asset(
-                ImageAssets.cartNavImage,
-                height: ref.watch(bottomNavNotifier).currentIndex == 1
-                    ? 26.ah
-                    : 23.ah,
-                color: ref.watch(bottomNavNotifier).currentIndex == 1
-                    ? AppColors.neutralWhite
-                    : AppColors.textBlack,
+            icon: Badge.count(
+              count: ref.watch(cartNotifier).cartList.length,
+              backgroundColor: AppColors.pink,
+              textColor: AppColors.neutralWhite,
+              child: Container(
+                margin:  EdgeInsets.only(
+                  bottom: ref.watch(bottomNavNotifier).currentIndex == 0 ?  5.ah : 8.ah,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16.aw, vertical: ref.watch(bottomNavNotifier).currentIndex == 1 ?  5.ah : 8.ah,
+                ),
+                decoration: BoxDecoration(
+                    color: ref.watch(bottomNavNotifier).currentIndex == 1
+                        ? AppColors.primaryBlue
+                        : AppColors.neutralWhite,
+                    borderRadius: BorderRadius.circular(32.ar)
+                ),
+                child: Image.asset(
+                  ImageAssets.cartNavImage,
+                  height: ref.watch(bottomNavNotifier).currentIndex == 1
+                      ? 26.ah
+                      : 23.ah,
+                  color: ref.watch(bottomNavNotifier).currentIndex == 1
+                      ? AppColors.neutralWhite
+                      : AppColors.textBlack,
+                ),
               ),
             ),
             label: AppStrings.cart,

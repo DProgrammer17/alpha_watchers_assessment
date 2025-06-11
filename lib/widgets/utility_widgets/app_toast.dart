@@ -1,12 +1,9 @@
 import 'package:app_watchers_assessment/core/constants/app_colors.dart';
 import 'package:app_watchers_assessment/core/constants/app_constants.dart';
-import 'package:app_watchers_assessment/core/constants/app_textstyles.dart';
 import 'package:app_watchers_assessment/utils/enums/snackbar_type.dart';
-import 'package:app_watchers_assessment/utils/extensions/widget_extensions.dart';
 import 'package:app_watchers_assessment/widgets/utility_widgets/app_snackbar_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 abstract class AppMessages {
   static void showInfoMessage({
